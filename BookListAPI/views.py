@@ -5,6 +5,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view 
  # Create your views here. 
 from rest_framework.views import APIView
+from rest_framework import viewsets
+from .serializers import BookSerializer
+from .models import Book
 
 # {
 # "title":"Seawolf",
@@ -33,9 +36,16 @@ class BookList(APIView):
     #     return Response({"message":"book updated"}, status.HTTP_200_OK)
     #     return Response(request.data.get('title'), status.HTTP_200_OK)
 
-class Book(APIView):
-    def get(self, request, pk):
-        return Response({"message":"single book with id " + str(pk)}, status.HTTP_200_OK)
+# class Book(APIView):
+#     def get(self, request, pk):
+#         return Response({"message":"single book with id " + str(pk)}, status.HTTP_200_OK)
 
-    def put(self, request, pk):
-        return Response({"title":request.data.get('title')}, status.HTTP_200_OK)
+#     def put(self, request, pk):
+#         return Response({"title":request.data.get('title')}, status.HTTP_200_OK)
+
+class BookView(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    def list(self, request):
+        return Response({"message":"All books with"}, status.HTTP_200_OK)
+    
