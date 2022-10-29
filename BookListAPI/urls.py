@@ -9,7 +9,7 @@ urlpatterns = [
     # path('books/',views.BookList.as_view()),
     # path('books/<int:pk>',views.Book.as_view())
     # path('books', views.BookView.as_view({'get':'list','post':'create'}))
-
+    path('orders', views.Orders.listOrders)
 ] 
 
-urlpatterns = router.urls
+urlpatterns += router.urls

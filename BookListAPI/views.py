@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render 
 from rest_framework.response import Response 
 from rest_framework import status 
-from rest_framework.decorators import api_view 
+from rest_framework.decorators import api_view, renderer_classes 
  # Create your views here. 
 from rest_framework.views import APIView
 from rest_framework import viewsets
@@ -49,3 +49,8 @@ class BookView(viewsets.ModelViewSet):
     def list(self, request):
         return Response({"message":"All books with"}, status.HTTP_200_OK)
     
+class Orders():
+    @staticmethod
+    @api_view()
+    def listOrders(request):
+        return Response({'message':'list of orders'}, 200)
